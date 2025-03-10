@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Category - AI Presentation Maker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .selected { border-color: #6b46c1 !important; background-color: #f5f3ff !important; }
+    </style>
+</head>
+<body class="bg-gray-50 flex items-center justify-center min-h-screen">
+
+    <div class="w-full max-w-2xl p-6 bg-white rounded-lg shadow-md">
+        <!-- Step Indicators & Close Button -->
+        <div class="flex justify-between items-center mb-6">
+            <div class="flex items-center space-x-2">
+                <a href="search.html" class="w-8 h-8 flex items-center justify-center rounded-full text-white font-bold bg-purple-500 hover:bg-purple-600 transition duration-300">1</a>
+                <a href="theme.html" class="w-8 h-8 flex items-center justify-center rounded-full text-white font-bold bg-purple-500 hover:bg-purple-600 transition duration-300">2</a>
+                <a href="category.html" class="w-8 h-8 flex items-center justify-center rounded-full text-white font-bold bg-purple-500">3</a>
+            </div>
+            <button onclick="window.location.href='index.html';" class="text-gray-500 hover:text-gray-700 transition">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Title & Description -->
+        <h1 class="text-2xl font-semibold text-center mb-2">Select a Category</h1>
+        <p class="text-center text-gray-600 mb-6">Choose the category that best fits your presentation topic.</p>
+
+        <!-- Category Selection Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div id="Education" class="category-option p-4 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100 transition" onclick="selectCategory('Education')">
+                <h2 class="font-semibold mb-1">Education</h2>
+                <p class="text-gray-600 text-sm">For academic and learning-based presentations.</p>
+            </div>
+
+            <div id="Business" class="category-option p-4 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100 transition" onclick="selectCategory('Business')">
+                <h2 class="font-semibold mb-1">Business</h2>
+                <p class="text-gray-600 text-sm">For corporate and professional presentations.</p>
+            </div>
+
+            <div id="Technology" class="category-option p-4 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100 transition" onclick="selectCategory('Technology')">
+                <h2 class="font-semibold mb-1">Technology</h2>
+                <p class="text-gray-600 text-sm">For tech-related and innovation-focused topics.</p>
+            </div>
+
+            <div id="Health" class="category-option p-4 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100 transition" onclick="selectCategory('Health')">
+                <h2 class="font-semibold mb-1">Health</h2>
+                <p class="text-gray-600 text-sm">For medical and wellness-related topics.</p>
+            </div>
+        </div>
+
+        <!-- Generate Presentation Button -->
+        <div class="flex justify-end mt-6">
+            <button class="bg-purple-600 text-white px-6 py-3 rounded-lg flex items-center space-x-2" onclick="generatePresentation()">
+                <span>Next</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Function to highlight selected category
+        function selectCategory(categoryName) {
+            sessionStorage.setItem("selectedCategory", categoryName);
+            document.querySelectorAll(".category-option").forEach(el => el.classList.remove("selected"));
+            document.getElementById(categoryName).classList.add("selected");
+        }
+
+        // Function to proceed to the final step
+        function generatePresentation() {
+            if (!sessionStorage.getItem("selectedCategory")) {
+                alert("Please select a category before generating the presentation.");
+                return;
+            }
+            window.location.href = "final.html";
+        }
+
+        // Restore selected category if user navigates back
+        document.addEventListener("DOMContentLoaded", function () {
+            const savedCategory = sessionStorage.getItem("selectedCategory");
+            if (savedCategory) {
+                document.getElementById(savedCategory).classList.add("selected");
+            }
+        });
+    </script>
+
+</body>
+</html>
