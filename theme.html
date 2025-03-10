@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Select Theme - AI Presentation Maker</title>
+     <script src="https://cdn.tailwindcss.com"></script>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+     <style>
+         body { font-family: 'Inter', sans-serif; }
+         .selected { border-color: #6b46c1 !important; background-color: #f5f3ff !important; }
+     </style>
+ </head>
+ <body class="bg-gray-50 flex items-center justify-center min-h-screen">
+ 
+     <div class="w-full max-w-2xl p-6 bg-white rounded-lg shadow-md">
+         <!-- Step Indicators & Close Button -->
+         <div class="flex justify-between items-center mb-6">
+             <div class="flex items-center space-x-2">
+                 <a href="search.html" class="w-8 h-8 flex items-center justify-center rounded-full text-white font-bold bg-purple-500 hover:bg-purple-600 transition duration-300">1</a>
+                 <a href="theme.html" class="w-8 h-8 flex items-center justify-center rounded-full text-white font-bold bg-purple-500">2</a>
+                 <a href="category.html" class="w-8 h-8 flex items-center justify-center rounded-full text-gray-500 font-bold bg-gray-300 hover:bg-gray-400 transition duration-300">3</a>
+             </div>
+             <button onclick="window.location.href='index.html';" class="text-gray-500 hover:text-gray-700 transition">
+                 <i class="fas fa-times text-xl"></i>
+             </button>
+         </div>
+ 
+         <!-- Title & Description -->
+         <h1 class="text-2xl font-semibold text-center mb-2">Select a Theme</h1>
+         <p class="text-center text-gray-600 mb-6">Choose a theme that matches your presentation style.</p>
+ 
+         <!-- Theme Selection Grid -->
+         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+             <div id="Minimalist" class="theme-option p-4 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100 transition" onclick="selectTheme('Minimalist')">
+                 <h2 class="font-semibold mb-1">Minimalist</h2>
+                 <p class="text-gray-600 text-sm">Simple and clean slides with a modern touch.</p>
+             </div>
+ 
+             <div id="Corporate" class="theme-option p-4 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100 transition" onclick="selectTheme('Corporate')">
+                 <h2 class="font-semibold mb-1">Corporate</h2>
+                 <p class="text-gray-600 text-sm">Professional slides suitable for business use.</p>
+             </div>
+ 
+             <div id="Creative" class="theme-option p-4 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100 transition" onclick="selectTheme('Creative')">
+                 <h2 class="font-semibold mb-1">Creative</h2>
+                 <p class="text-gray-600 text-sm">Vibrant and artistic slides with unique designs.</p>
+             </div>
+ 
+             <div id="Dark Mode" class="theme-option p-4 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100 transition" onclick="selectTheme('Dark Mode')">
+                 <h2 class="font-semibold mb-1">Dark Mode</h2>
+                 <p class="text-gray-600 text-sm">Dark background with bright contrasting text.</p>
+             </div>
+         </div>
+ 
+         <!-- Next Button -->
+         <div class="flex justify-end mt-6">
+             <button class="bg-purple-600 text-white px-6 py-3 rounded-lg flex items-center space-x-2" onclick="nextStep()">
+                 <span>Next</span>
+                 <i class="fas fa-arrow-right"></i>
+             </button>
+         </div>
+     </div>
+ 
+     <script>
+         // Function to highlight selected theme
+         function selectTheme(themeName) {
+             sessionStorage.setItem("selectedTheme", themeName);
+             document.querySelectorAll(".theme-option").forEach(el => el.classList.remove("selected"));
+             document.getElementById(themeName).classList.add("selected");
+         }
+ 
+         // Function to proceed to the next step
+         function nextStep() {
+             if (!sessionStorage.getItem("selectedTheme")) {
+                 alert("Please select a theme before proceeding.");
+                 return;
+             }
+             window.location.href = "category.html";
+         }
+ 
+         // Restore selected theme if user navigates back
+         document.addEventListener("DOMContentLoaded", function () {
+             const savedTheme = sessionStorage.getItem("selectedTheme");
+             if (savedTheme) {
+                 document.getElementById(savedTheme).classList.add("selected");
+             }
+         });
+     </script>
+ 
+ </body>
+ </html>
