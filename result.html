@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Presentation Maker - Result</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+body { 
+    font-family: 'Inter', sans-serif; 
+    background: linear-gradient(135deg, #667eea, #764ba2); 
+}
+    </style>
+</head>
+<body class="bg-gray-50 flex items-center justify-center min-h-screen">
+
+    <div class="w-full max-w-2xl p-6 bg-white rounded-lg shadow-md text-center">
+        <!-- Success Message -->
+        <h1 class="text-2xl font-semibold text-green-600 mb-4">
+            🎉 Presentation Generated Successfully!
+        </h1>
+        <p class="text-gray-600 mb-6">Your AI-powered presentation is ready to download.</p>
+
+        <!-- Summary of Selected Inputs -->
+        <div class="text-left bg-gray-100 p-4 rounded-lg mb-6">
+            <p class="mb-2"><strong>📌 Topic:</strong> <span id="summaryTopic">Not specified</span></p>
+            <p class="mb-2"><strong>📑 Slides:</strong> <span id="summarySlides">Default (8-12)</span></p>
+            <p class="mb-2"><strong>🎨 Theme:</strong> <span id="summaryTheme">No theme selected</span></p>
+            <p class="mb-2"><strong>📂 Category:</strong> <span id="summaryCategory">No category selected</span></p>
+        </div>
+
+        <!-- Download and Home Buttons -->
+        <div class="flex justify-center space-x-4">
+            <button class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
+                onclick="downloadPPTX()">
+                <i class="fas fa-download mr-2"></i> Download PPTX
+            </button>
+            <button class="bg-gray-500 text-white px-6 py-3 rounded-lg hover:bg-gray-600 transition"
+                onclick="window.location.href='index.html'">
+                <i class="fas fa-home mr-2"></i> Back to Home
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Load Selected Options from sessionStorage
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("summaryTopic").textContent = sessionStorage.getItem("selectedTopic") || "Not specified";
+            document.getElementById("summarySlides").textContent = sessionStorage.getItem("selectedSlides") || "Default (8-12)";
+            document.getElementById("summaryTheme").textContent = sessionStorage.getItem("selectedTheme") || "No theme selected";
+            document.getElementById("summaryCategory").textContent = sessionStorage.getItem("selectedCategory") || "No category selected";
+        });
+
+        // Placeholder function for downloading PPTX (to be replaced with actual backend logic)
+        function downloadPPTX() {
+            alert("Your PPTX file is being prepared. (Integration needed)");
+            // Example: window.location.href = 'server-generated-file.pptx';
+        }
+    </script>
+
+</body>
+</html>
